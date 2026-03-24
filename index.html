@@ -1,0 +1,1403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meghan Kulkarni — Design Case Studies</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #030e14;
+  --surface: #061621;
+  --surf2:   #0a1e2c;
+  --border:  #0f2535;
+  --text:    #c8dde6;
+  --muted:   #4a6878;
+  --dim:     #1a3345;
+  --accent:  #0ea5b5;
+  --alight:  #5cc8d5;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; }
+
+/* ── DECK ── */
+#deck {
+  display: flex;
+  height: 100vh;
+  transition: transform 0.6s cubic-bezier(0.77,0,0.18,1);
+  will-change: transform;
+}
+.slide {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 72px 96px;
+  position: relative;
+  overflow: hidden;
+}
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.bg-a::before { background: radial-gradient(ellipse 80% 50% at 15% 30%, rgba(14,165,181,.08), transparent 60%); }
+.bg-b::before { background: radial-gradient(ellipse 60% 40% at 85% 70%, rgba(14,165,181,.07), transparent 55%); }
+.bg-cover::before { background: radial-gradient(ellipse 70% 60% at 50% -5%, rgba(14,165,181,.11), transparent 62%); }
+
+/* ── TYPE ── */
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+h1.big {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(52px, 7vw, 88px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  color: #e8f4f8;
+}
+h2.med {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(32px, 4.5vw, 60px);
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  color: #e8f4f8;
+}
+em { font-style: italic; color: var(--accent); }
+.em2 { font-style: italic; color: var(--alight); }
+
+/* ── COVER ── */
+.cover-line { width: 56px; height: 2px; background: var(--accent); margin: 22px 0; box-shadow: 0 0 14px rgba(14,165,181,.5); }
+.subtitle { font-size: 18px; color: var(--muted); line-height: 1.6; }
+
+/* ── META ROW ── */
+.meta-row {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.meta-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: .13em; color: var(--muted); }
+.meta-item .value { font-size: 15px; margin-top: 5px; color: var(--text); }
+
+/* ── QUOTE ── */
+.quote {
+  border-left: 3px solid var(--accent);
+  padding: 18px 22px;
+  background: rgba(14,165,181,.05);
+  border-radius: 0 10px 10px 0;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--text);
+  max-width: 700px;
+  margin-top: 24px;
+}
+.quote cite { display: block; font-style: normal; font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+/* ── INSIGHT ── */
+.insight {
+  display: block;
+  background: rgba(14,165,181,.06);
+  border: 1px solid rgba(14,165,181,.16);
+  border-radius: 12px;
+  padding: 20px 24px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 640px;
+}
+.insight strong { color: var(--accent); }
+
+/* ── TWO-COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; width: 100%; max-width: 1100px; align-items: center; }
+
+/* ── LIST ── */
+ul.dk-list { list-style: none; padding: 0; margin-top: 20px; display: flex; flex-direction: column; gap: 13px; max-width: 680px; }
+ul.dk-list li { display: flex; gap: 12px; font-size: 16px; color: var(--muted); line-height: 1.6; align-items: flex-start; }
+ul.dk-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
+ul.dk-list li strong { color: var(--text); }
+
+/* ── STEPS ── */
+.steps { display: flex; flex-direction: column; gap: 15px; margin-top: 18px; max-width: 720px; width: 100%; }
+.step { display: flex; gap: 15px; align-items: flex-start; }
+.step-n {
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid rgba(14,165,181,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; color: var(--accent);
+  flex-shrink: 0; margin-top: 1px;
+}
+.step-b h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.step-b p  { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+/* ── OUTCOMES GRID ── */
+.out-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 26px; width: 100%; max-width: 860px; }
+.out-card { background: rgba(14,165,181,.04); border: 1px solid rgba(14,165,181,.13); border-radius: 16px; padding: 26px 22px; }
+.out-n { font-size: 44px; font-weight: 700; letter-spacing: -.03em; color: var(--accent); line-height: 1; }
+.out-d { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.55; }
+
+/* ── FIGMA EMBED ── */
+.figma-wrap {
+  width: 100%;
+  max-width: 980px;
+  height: 520px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(14,165,181,.2);
+  background: var(--surface);
+  box-shadow: 0 24px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.03);
+  position: relative;
+}
+.figma-wrap iframe { width: 100%; height: 100%; border: none; }
+.figma-ph {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; gap: 10px; color: var(--muted); text-align: center; padding: 40px;
+}
+.figma-ph svg { opacity: .35; margin-bottom: 4px; }
+.figma-ph h4 { font-size: 16px; font-weight: 500; color: var(--text); }
+.figma-ph p { font-size: 14px; line-height: 1.65; max-width: 420px; }
+.figma-ph code {
+  display: inline-block;
+  background: var(--surf2); border: 1px solid var(--border);
+  padding: 6px 12px; border-radius: 6px; font-size: 12px;
+  color: var(--accent); font-family: 'IBM Plex Mono', monospace;
+  word-break: break-all; margin-top: 6px;
+}
+.figma-ph .how {
+  margin-top: 14px; padding: 14px 18px;
+  background: rgba(255,255,255,.02); border: 1px solid var(--border);
+  border-radius: 10px; font-size: 13px; line-height: 1.7; text-align: left; max-width: 480px;
+}
+.figma-ph .how ol { padding-left: 18px; margin-top: 6px; }
+.figma-ph .how li { margin-bottom: 4px; }
+
+/* ── DIVIDER SLIDE ── */
+.div-big {
+  font-size: 180px; font-weight: 800;
+  color: rgba(14,165,181,.05);
+  position: absolute; right: 32px; bottom: -20px;
+  line-height: 1; user-select: none; pointer-events: none;
+}
+
+/* ── END SLIDE ── */
+.contact-links { display: flex; gap: 12px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
+.cl { padding: 12px 26px; border-radius: 8px; font-size: 15px; font-weight: 500; transition: all .2s; text-decoration: none; color: inherit; }
+.cl-p { background: var(--accent); color: #fff !important; }
+.cl-p:hover { opacity: .82; }
+.cl-o { border: 1px solid var(--border); }
+.cl-o:hover { border-color: var(--muted); }
+
+/* ── SIDEBAR MENU ── */
+#menu-toggle {
+  position: fixed;
+  top: 18px; left: 18px;
+  z-index: 200;
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(100,200,220,.15);
+  background: rgba(3,10,18,.85);
+  backdrop-filter: blur(12px);
+  color: var(--text);
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  transition: border-color .2s;
+  font-family: inherit;
+}
+#menu-toggle:hover { border-color: var(--accent); }
+#menu-toggle span {
+  display: block; width: 16px; height: 1.5px;
+  background: var(--text); border-radius: 1px;
+  transition: transform .3s, opacity .3s;
+}
+#menu-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+#menu-toggle.open span:nth-child(2) { opacity: 0; }
+#menu-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+#sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 260px;
+  z-index: 190;
+  background: rgba(3,8,14,.96);
+  backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(100,200,220,.08);
+  transform: translateX(-100%);
+  transition: transform .35s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+  padding: 72px 0 32px;
+  overflow-y: auto;
+}
+#sidebar.open { transform: translateX(0); }
+#sidebar::-webkit-scrollbar { width: 3px; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.07); border-radius: 2px; }
+
+.sb-section { margin-bottom: 8px; }
+.sb-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .14em;
+  color: var(--muted); padding: 10px 22px 6px; font-weight: 500;
+}
+.sb-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 22px;
+  font-size: 13px; color: var(--muted);
+  cursor: pointer; border: none; background: none;
+  font-family: inherit; width: 100%; text-align: left;
+  transition: color .15s, background .15s;
+}
+.sb-item:hover { color: var(--text); background: rgba(255,255,255,.03); }
+.sb-item.active { color: var(--accent); background: rgba(14,165,181,.06); }
+.sb-item .sb-num {
+  font-size: 10px; color: var(--dim); min-width: 18px;
+  font-weight: 500;
+}
+.sb-item.active .sb-num { color: var(--accent); }
+
+#sidebar-overlay {
+  position: fixed; inset: 0; z-index: 180;
+  background: rgba(0,0,0,.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s;
+}
+#sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── BUBBLES ── */
+.bub { position: absolute; border-radius: 50%; background: rgba(100,200,220,.03); border: 1px solid rgba(100,200,220,.06); pointer-events: none; }
+
+/* ── NAV BAR ── */
+#nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 28px;
+  background: rgba(3,10,18,.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(100,200,220,.08);
+}
+.nbtn {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(100,200,220,.14);
+  background: rgba(14,165,181,.07);
+  color: var(--text); font-size: 17px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .2s; font-family: inherit; flex-shrink: 0;
+}
+.nbtn:hover { border-color: var(--accent); color: var(--accent); background: rgba(14,165,181,.14); }
+.nbtn:disabled { opacity: .22; cursor: not-allowed; pointer-events: none; }
+
+#prog-wrap { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.prog-track { height: 2px; background: rgba(255,255,255,.07); border-radius: 1px; overflow: hidden; }
+.prog-fill  { height: 100%; background: var(--accent); border-radius: 1px; transition: width .6s cubic-bezier(0.77,0,0.18,1); box-shadow: 0 0 8px rgba(14,165,181,.45); }
+#dots-row   { display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
+.dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,.1); cursor: pointer;
+  border: none; padding: 0; transition: all .2s;
+}
+.dot.active  { background: var(--accent); box-shadow: 0 0 5px var(--accent); }
+.dot.visited { background: rgba(14,165,181,.3); }
+
+#ctr { font-size: 13px; color: var(--muted); font-weight: 500; white-space: nowrap; min-width: 48px; text-align: right; }
+
+/* ── KBD HINT ── */
+#hint {
+  position: fixed; top: 18px; right: 22px; z-index: 50;
+  font-size: 12px; color: var(--muted); display: flex; gap: 5px; align-items: center;
+  transition: opacity .4s;
+}
+.k { border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; font-size: 11px; color: var(--dim); background: var(--surface); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 820px) {
+  .slide { padding: 56px 28px 90px; }
+  .two-col { grid-template-columns: 1fr; gap: 28px; }
+  .out-grid { grid-template-columns: 1fr 1fr; }
+  h1.big { font-size: 42px; }
+  h2.med { font-size: 30px; }
+  .figma-wrap { height: 340px; }
+  .div-big { font-size: 100px; }
+}
+@media (max-width: 500px) {
+  .out-grid { grid-template-columns: 1fr; }
+  .meta-row { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<div id="sidebar-overlay"></div>
+<button id="menu-toggle" aria-label="Toggle menu">
+  <span></span><span></span><span></span>
+</button>
+<nav id="sidebar" aria-label="Slide navigation">
+  
+    <div class="sb-section">
+      <div class="sb-label">Overview</div>
+      <button class="sb-item" data-slide="0"><span class="sb-num">01</span>Cover</button>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Cassini</div>
+      <button class="sb-item" data-slide="1"><span class="sb-num">02</span>Overview</button>
+      <button class="sb-item" data-slide="2"><span class="sb-num">03</span>The Problem</button>
+      <!-- The Problem covers slides 3 and 4 -->
+      <button class="sb-item" data-slide="4" style="display:none"></button>
+      <button class="sb-item" data-slide="6"><span class="sb-num">06</span>Discovery + V1</button>
+      <!-- Paradigm Design System covers slides 9 and 10 -->
+      <button class="sb-item" data-slide="9"><span class="sb-num">09</span>Paradigm + V2</button>
+      <!-- Paradigm + V2 covers slides 10 and 11 -->
+      <button class="sb-item" data-slide="10"><span class="sb-num">10</span>Agent</button>
+      <button class="sb-item" data-slide="11"><span class="sb-num">11</span>Qualitative User Testing</button>
+      <button class="sb-item" data-slide="12"><span class="sb-num">12</span>A/B Testing</button>
+      <button class="sb-item" data-slide="13"><span class="sb-num">13</span>Glass morphism</button>
+      <button class="sb-item" data-slide="15"><span class="sb-num">15</span>Outcomes</button>
+      <button class="sb-item" data-slide="16"><span class="sb-num">16</span>Learnings</button>
+    </div>
+  <div class="sb-section">
+    <div class="sb-label">Internal Knowledge Engine</div>
+    <button class="sb-item" data-slide="17"><span class="sb-num">18</span>Overview</button>
+    <button class="sb-item" data-slide="18"><span class="sb-num">19</span>The Problem</button>
+    <button class="sb-item" data-slide="19"><span class="sb-num">20</span>Discovery</button>
+    <button class="sb-item" data-slide="21"><span class="sb-num">22</span>Core Design Challenges</button>
+    <button class="sb-item" data-slide="22"><span class="sb-num">23</span>Design Solutions</button>
+      <button class="sb-item" data-slide="23"><span class="sb-num">24</span>User Testing</button>
+      <button class="sb-item" data-slide="27"><span class="sb-num">28</span>Prototype</button>
+    <button class="sb-item" data-slide="28"><span class="sb-num">29</span>Outcomes</button>
+    <button class="sb-item" data-slide="29"><span class="sb-num">30</span>Learnings</button>
+  </div>
+  <div class="sb-section">
+    <div class="sb-label">End</div>
+    <button class="sb-item" data-slide="29"><span class="sb-num">29</span>Closing</button>
+  </div>
+</nav>
+
+<div id="hint">
+  <span class="k">←</span><span class="k">→</span>&nbsp;navigate&nbsp;·&nbsp;<span class="k">F</span>&nbsp;fullscreen
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  SLIDES                                    -->
+<!-- ══════════════════════════════════════════ -->
+<div id="deck">
+
+  <!-- ─── 01: COVER ─── -->
+  <section class="slide bg-cover" style="background:var(--bg);text-align:center">
+    <div class="bub" style="width:320px;height:320px;top:-100px;left:-100px"></div>
+    <div class="bub" style="width:200px;height:200px;bottom:80px;right:-50px"></div>
+    <h1 class="big">Meghan<br>Kulkarni<em>.</em></h1>
+    <div class="cover-line" style="margin:24px auto"></div>
+    <p class="subtitle">Case Studies</p>
+    <p style="font-size:15px;color:var(--muted);margin-top:10px;max-width:460px;line-height:1.75;text-align:center">
+      Cassini &amp; Internal Knowledge Engine
+    </p>
+  </section>
+
+
+  <!-- ─── 02: CS1 TITLE ─── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:flex-start">
+    <div class="eyebrow">Case Study 01 of 02</div>
+    <h2 class="med"><em>Cassini</em></h2>
+    <div class="meta-row">
+      <div class="meta-item"><div class="label">Company</div><div class="value">Accrete.ai</div></div>
+<div class="meta-item"><div class="label">Role</div><div class="value">Founding Designer</div></div>
+      <div class="meta-item"><div class="label">Product</div><div class="value">IT Service Management</div></div>
+      <div class="meta-item"><div class="label">Team</div><div class="value">Product Manager · Product Designer (Me) · Fortune 10 Client · Client Users · 13 Engineers</div></div>
+      <div class="meta-item"><div class="label">Duration</div><div class="value">2023 – 2025</div></div>
+      <div class="meta-item"><div class="label">Target Users</div><div class="value">Client's IT Department</div></div>
+    </div>
+    <div style="margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);width:100%;max-width:860px">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);margin-bottom:14px;font-weight:500">Constraints</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 16px;font-size:13px;color:var(--text)">No design system</div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 16px;font-size:13px;color:var(--text)">Client compliance requirements</div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 16px;font-size:13px;color:var(--text)">Ambiguous specifications</div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 16px;font-size:13px;color:var(--text)">Data-dense domain</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ─── 03: CS1 PROBLEM ─── -->
+  <section class="slide bg-b" id="slide-problem" style="background:var(--bg)">
+    <div class="two-col" style="align-items:center">
+      <div>
+        <div class="eyebrow">The Problem</div>
+        <h2 class="med" style="font-size:clamp(24px,3.4vw,46px);max-width:560px">
+          Large organizations can lose up to <em>$33,000 a minute</em> when IT outages and incidents occur
+        </h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <!-- Live cost ticker -->
+        <div style="background:rgba(255,40,40,.04);border:1px solid rgba(255,80,80,.18);border-radius:16px;padding:28px 32px">
+          <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,120,120,.7);font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:8px">
+            <span style="width:7px;height:7px;border-radius:50%;background:#ff4444;display:inline-block;animation:blink 1s infinite"></span>
+            Live outage cost
+          </div>
+          <div id="cost-ticker" style="font-size:clamp(36px,4vw,56px);font-weight:700;letter-spacing:-.03em;color:#ff6b6b;line-height:1;font-variant-numeric:tabular-nums">$0</div>
+          <div style="margin-top:10px;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px">
+            <span style="color:rgba(255,120,120,.6)">↑</span> $550 every second
+          </div>
+        </div>
+        <!-- Outage incident panel -->
+        <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+          <!-- Header -->
+          <div style="padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500">
+              <span style="width:7px;height:7px;border-radius:50%;background:#ff4444;display:inline-block;animation:blink 1s infinite"></span>
+              Active Incident · P1
+            </div>
+            <span id="elapsed-ticker" style="font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums">00:00</span>
+          </div>
+          <!-- Affected services -->
+          <div style="padding:14px 18px;border-bottom:1px solid var(--border)">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px">Affected Services</div>
+            <div style="display:flex;flex-direction:column;gap:7px">
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px">
+                <span style="color:var(--text)">ITSM Portal</span>
+                <span style="background:rgba(255,60,60,.12);color:#ff6b6b;border:1px solid rgba(255,60,60,.25);padding:2px 8px;border-radius:4px;font-size:11px">DOWN</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px">
+                <span style="color:var(--text)">Ticket Routing</span>
+                <span style="background:rgba(255,60,60,.12);color:#ff6b6b;border:1px solid rgba(255,60,60,.25);padding:2px 8px;border-radius:4px;font-size:11px">DOWN</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px">
+                <span style="color:var(--text)">Knowledge Base</span>
+                <span style="background:rgba(255,140,60,.1);color:#ff8c42;border:1px solid rgba(255,140,60,.25);padding:2px 8px;border-radius:4px;font-size:11px">DEGRADED</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:13px">
+                <span style="color:var(--text)">Alert Pipeline</span>
+                <span style="background:rgba(255,140,60,.1);color:#ff8c42;border:1px solid rgba(255,140,60,.25);padding:2px 8px;border-radius:4px;font-size:11px">DEGRADED</span>
+              </div>
+            </div>
+          </div>
+          <!-- Open tickets -->
+          <div style="padding:12px 18px;display:flex;align-items:center;justify-content:space-between">
+            <div style="font-size:12px;color:var(--muted)">Open tickets</div>
+            <div id="ticket-count" style="font-size:14px;font-weight:600;color:#ff6b6b;font-variant-numeric:tabular-nums">0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 04: CS1 PROBLEM (CONT) ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:flex-start;justify-content:center">
+    <div style="width:100%;max-width:1100px">
+      <div style="margin-bottom:20px">
+        <div class="eyebrow" style="margin-bottom:6px">The Problem</div>
+        <h2 class="med" style="font-size:clamp(20px,2.6vw,34px);margin:0">Ticket resolution <em>pre-Cassini</em></h2>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:22px;line-height:1.7">Before Cassini, resolving a single IT ticket meant bouncing between four disconnected tools with no way to surface related context.</p>
+      <div style="display:flex;align-items:center;gap:0;width:100%">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0">
+          <div style="width:76px;height:76px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+            <div style="font-size:20px">🚨</div><div style="font-size:10px;color:var(--muted);text-align:center;line-height:1.3">Incident<br>occurs</div>
+          </div>
+        </div>
+        <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--border),rgba(255,100,100,.3));position:relative"><div style="position:absolute;top:-9px;right:-8px;color:var(--muted);font-size:16px">›</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0">
+          <div style="width:76px;height:76px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+            <div style="font-size:20px">🎫</div><div style="font-size:10px;color:var(--muted);text-align:center;line-height:1.3">Ticket<br>created</div>
+          </div>
+        </div>
+        <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--border),rgba(255,100,100,.3));position:relative"><div style="position:absolute;top:-9px;right:-8px;color:var(--muted);font-size:16px">›</div></div>
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px">
+          <div style="font-size:10px;color:rgba(255,120,80,.8);text-transform:uppercase;letter-spacing:.1em;font-weight:500">4 separate tools</div>
+          <div style="border:1px solid rgba(255,100,60,.25);border-radius:12px;padding:12px;background:rgba(255,60,30,.03);display:grid;grid-template-columns:1fr 1fr;gap:7px;width:210px">
+            <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:11px;color:var(--muted);text-align:center">📋 ITSM Portal</div>
+            <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:11px;color:var(--muted);text-align:center">📄 Log Viewer</div>
+            <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:11px;color:var(--muted);text-align:center">📚 Knowledge Base</div>
+            <div style="background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:11px;color:var(--muted);text-align:center">🕐 Incident History</div>
+          </div>
+          <div style="font-size:11px;color:rgba(255,120,80,.7)">↕ manual cross-referencing · <strong style="color:rgba(255,100,60,.9)">~45 min</strong></div>
+        </div>
+        <div style="flex:1;height:2px;background:linear-gradient(90deg,rgba(255,100,100,.3),rgba(255,100,100,.5));position:relative"><div style="position:absolute;top:-9px;right:-8px;color:rgba(255,100,80,.6);font-size:16px">›</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0">
+          <div style="width:90px;height:76px;border-radius:12px;background:rgba(255,100,60,.05);border:1px solid rgba(255,100,60,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+            <div style="font-size:20px">🔍</div><div style="font-size:10px;color:rgba(255,140,100,.8);text-align:center;line-height:1.3">Piece<br>together</div>
+          </div>
+          <div style="font-size:11px;color:rgba(255,120,80,.8);font-weight:500">~20 min</div>
+        </div>
+        <div style="flex:1;height:2px;background:linear-gradient(90deg,rgba(255,100,100,.5),var(--border));position:relative"><div style="position:absolute;top:-9px;right:-8px;color:var(--muted);font-size:16px">›</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0">
+          <div style="width:76px;height:76px;border-radius:12px;background:rgba(14,165,181,.06);border:1px solid rgba(14,165,181,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+            <div style="font-size:20px">✓</div><div style="font-size:10px;color:var(--accent);text-align:center;line-height:1.3">Decision<br>made</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 05: CS1 QUOTES ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:stretch;justify-content:center;padding:0">
+    <div class="eyebrow" style="margin-left:64px;margin-top:32px">Pain Points</div>
+    <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;width:100vw;gap:10px;padding:0 2vw 0;">
+      <blockquote class="quote" style="max-width:900px;width:100%;font-size:0.95vw;padding:12px 20px;margin:0;border-radius:8px;">
+        The problem isn't that I don't trust the AI. It's that when it flags something, I have no way to verify it quickly. I'll spend 20 minutes digging through logs trying to understand what it saw that I didn't. If it just showed me the reasoning, I'd approve or reject in two minutes.
+      </blockquote>
+      <blockquote class="quote" style="max-width:900px;width:100%;font-size:0.95vw;padding:12px 20px;margin:0;border-radius:8px;">
+        We had an incident last quarter that a smarter pre-approval check would have caught. The change looked routine on paper. Nobody connected it to three other tickets that had failed in the same environment two weeks prior. That context exists, we just had no way to surface it in time.
+      </blockquote>
+      <blockquote class="quote" style="max-width:900px;width:100%;font-size:0.95vw;padding:12px 20px;margin:0;border-radius:8px;">
+        I don't need a dashboard. I need the right information at the moment I'm making a decision. Right now I'm switching between four different tools to get a full picture of one ticket. That's where the time goes.
+      </blockquote>
+      <blockquote class="quote" style="max-width:900px;width:100%;font-size:0.95vw;padding:12px 20px;margin:0;border-radius:8px;">
+        What I really want to know is how many steps away this ticket is from something that already went wrong. If this change touches the same service as an incident from last week, I need to see that connection immediately, not piece it together myself after the fact.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ─── 06: CS1 VOICES FROM THE FIELD ── -->
+
+  <!-- ─── 06: DISCOVERY ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:center;flex-direction:row;gap:48px;justify-content:center">
+    <!-- Left: text -->
+    <div style="flex:0 0 auto;max-width:380px;display:flex;flex-direction:column;justify-content:center">
+      <div class="eyebrow">Discovery + V1</div>
+      <p style="font-size:clamp(14px,1.1vw,18px);line-height:1.6;color:var(--muted)">We focused on one ticket type — Incidents.</p>
+      <p style="font-size:clamp(14px,1.1vw,18px);line-height:1.6;color:var(--muted)">The scope expanded to seven. Every ticket type connected back to Incidents — Changes that caused them, Problems that explained them, Configuration items that contained them. Each had its own rules, its own metadata, its own user expectations.</p>
+      <p style="font-size:clamp(14px,1.1vw,18px);line-height:1.6;color:var(--muted);margin-top:2em"><strong>The challenge:</strong> one experience, seven mental models, zero cognitive overhead.</p>
+    </div>
+    <!-- Right: diagram -->
+    <div style="flex:0 1 500px;display:flex;flex-direction:column;align-items:flex-start;min-width:0">
+      <p style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 10px">ITSM Ticket Type Relationships</p>
+      <svg viewBox="0 0 700 395" width="100%" style="max-height:340px" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="itsm-arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="rgba(14,165,181,0.5)"/>
+          </marker>
+        </defs>
+        <!-- Incident → Problem -->
+        <line x1="140" y1="68" x2="172" y2="152" stroke="rgba(14,165,181,0.45)" stroke-width="1.5" marker-end="url(#itsm-arr)"/>
+        <!-- RITM → Change -->
+        <line x1="560" y1="68" x2="528" y2="152" stroke="rgba(14,165,181,0.45)" stroke-width="1.5" marker-end="url(#itsm-arr)"/>
+        <!-- Problem → Change -->
+        <line x1="246" y1="170" x2="454" y2="170" stroke="rgba(14,165,181,0.45)" stroke-width="1.5" marker-end="url(#itsm-arr)"/>
+        <!-- Problem → Config Item -->
+        <line x1="238" y1="186" x2="292" y2="263" stroke="rgba(14,165,181,0.4)" stroke-width="1.5" marker-end="url(#itsm-arr)"/>
+        <!-- Change → Config Item -->
+        <line x1="462" y1="186" x2="412" y2="263" stroke="rgba(14,165,181,0.4)" stroke-width="1.5" marker-end="url(#itsm-arr)"/>
+        <!-- Config Item → Location -->
+        <line x1="287" y1="299" x2="220" y2="354" stroke="rgba(14,165,181,0.4)" stroke-width="1.5" marker-end="url(#itsm-arr)"/>
+        <!-- Config Item → Ownership -->
+        <line x1="413" y1="299" x2="480" y2="354" stroke="rgba(14,165,181,0.4)" stroke-width="1.5" marker-end="url(#itsm-arr)"/>
+
+        <!-- Incident (highlighted — starting point) -->
+        <rect x="75" y="32" width="130" height="36" rx="5" fill="rgba(14,165,181,0.15)" stroke="#0ea5b5" stroke-width="1.5"/>
+        <text x="140" y="55" text-anchor="middle" fill="#0ea5b5" font-size="13" font-family="Inter,system-ui,sans-serif" font-weight="600">Incident</text>
+
+        <!-- RITM -->
+        <rect x="495" y="32" width="130" height="36" rx="5" fill="rgba(14,165,181,0.05)" stroke="rgba(14,165,181,0.45)" stroke-width="1.5"/>
+        <text x="560" y="55" text-anchor="middle" fill="#c8dde6" font-size="13" font-family="Inter,system-ui,sans-serif">RITM</text>
+
+        <!-- Problem -->
+        <rect x="115" y="152" width="130" height="36" rx="5" fill="rgba(14,165,181,0.05)" stroke="rgba(14,165,181,0.45)" stroke-width="1.5"/>
+        <text x="180" y="175" text-anchor="middle" fill="#c8dde6" font-size="13" font-family="Inter,system-ui,sans-serif">Problem</text>
+
+        <!-- Change -->
+        <rect x="455" y="152" width="130" height="36" rx="5" fill="rgba(14,165,181,0.05)" stroke="rgba(14,165,181,0.45)" stroke-width="1.5"/>
+        <text x="520" y="175" text-anchor="middle" fill="#c8dde6" font-size="13" font-family="Inter,system-ui,sans-serif">Change</text>
+
+        <!-- Configuration Item (central hub) -->
+        <rect x="265" y="263" width="170" height="36" rx="5" fill="rgba(14,165,181,0.09)" stroke="rgba(14,165,181,0.55)" stroke-width="1.5"/>
+        <text x="350" y="286" text-anchor="middle" fill="#c8dde6" font-size="13" font-family="Inter,system-ui,sans-serif">Configuration Item</text>
+
+        <!-- Location -->
+        <rect x="95" y="354" width="130" height="36" rx="5" fill="rgba(14,165,181,0.04)" stroke="rgba(14,165,181,0.3)" stroke-width="1.5"/>
+        <text x="160" y="377" text-anchor="middle" fill="#c8dde6" font-size="12" font-family="Inter,system-ui,sans-serif">Location</text>
+
+        <!-- Ownership -->
+        <rect x="475" y="354" width="130" height="36" rx="5" fill="rgba(14,165,181,0.04)" stroke="rgba(14,165,181,0.3)" stroke-width="1.5"/>
+        <text x="540" y="377" text-anchor="middle" fill="#c8dde6" font-size="12" font-family="Inter,system-ui,sans-serif">Ownership</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── 07: DISCOVERY + V1 ── -->
+  <section class="slide" style="background:var(--bg);gap:14px">
+    <div style="text-align:center">
+      <div class="eyebrow">Discovery + V1</div>
+      <p style="font-size:clamp(12px,.9vw,14px);max-width:680px;line-height:1.6;color:var(--muted);margin:8px auto 0">While requirements were still being collected and priorities were shifting, I ran a lo-fi prototype in parallel — a working tool to pressure-test ideas with engineers, PMs, and the client.</p>
+    </div>
+    <div class="figma-wrap">
+      <!--
+        1. In Figma, open your prototype
+        2. Click Share → Copy embed link
+        3. Replace PASTE_YOUR_FIGMA_LINK_HERE with your embed URL
+      -->
+      <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/XFFZRwIs2uUn4uqR2dhBqg/Work-Sample?page-id=0%3A1&node-id=2235-85214&viewport=-3432%2C-19953%2C0.37&t=NsqqNvA8RAjpifvf-1&scaling=contain&content-scaling=fixed&starting-point-node-id=2235%3A85214"
+        style="width:100%;min-height:600px;border:none;border-radius:16px;"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ─── 08: DISCOVERY + V1 (cont) ── -->
+  <section class="slide" style="background:var(--bg);gap:10px;justify-content:center;align-items:center">
+    <div style="text-align:center">
+      <div class="eyebrow">Discovery + V1</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:980px;flex:1;min-height:0">
+      <div style="background:rgba(14,165,181,.04);border:1px solid rgba(14,165,181,.15);border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:10px 14px;border-bottom:1px solid rgba(14,165,181,.1)">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">Risk Model</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:6px">Users couldn't distinguish high-risk tickets from routine ones without manually digging through metadata. Reviewers were rubber-stamping to clear the queue, not because they were careless, but because the system gave them no way to triage quickly.</p>
+        </div>
+        <div style="flex:1;min-height:60px;overflow:hidden">
+          <img src="risk model.png" alt="Risk Model" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+      <div style="background:rgba(14,165,181,.04);border:1px solid rgba(14,165,181,.15);border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:10px 14px;border-bottom:1px solid rgba(14,165,181,.1)">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">Knowledge Graph</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:6px">Multiple users described the same gap: no way to see how a change was connected to prior incidents or other in-flight tickets. Context that existed in the system was invisible at decision time.</p>
+        </div>
+        <div style="flex:1;min-height:60px;overflow:hidden">
+          <img src="KG.png" alt="Knowledge Graph" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+      <div style="background:rgba(14,165,181,.04);border:1px solid rgba(14,165,181,.15);border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:10px 14px;border-bottom:1px solid rgba(14,165,181,.1)">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">Incident Remediation</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:6px">When an incident occurred, the path to resolution required too many manual steps and too much context-switching. Users stalled at multi-select flows that forced decisions the system already had the data to make.</p>
+        </div>
+        <div style="flex:1;min-height:60px;overflow:hidden">
+          <img src="IR.png" alt="Incident Remediation" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+      <div style="background:rgba(14,165,181,.04);border:1px solid rgba(14,165,181,.15);border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:10px 14px;border-bottom:1px solid rgba(14,165,181,.1)">
+          <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">AG Grid</div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:6px">With seven ticket types sharing a single list view, users lost context constantly. Rather than designing a bespoke table from scratch before the data model was stable, AG Grid let us prototype column configurations, filtering, and grouping in days — fast enough to test whether type-level separation actually helped users orient, before committing to a full implementation.</p>
+        </div>
+        <div style="flex:1;min-height:60px;overflow:hidden">
+          <img src="AG.png" alt="AG Grid" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 09: REDESIGN ── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:flex-start;justify-content:center">
+    <div class="eyebrow" style="margin-bottom:12px">Paradigm + V2</div>
+    <p style="font-size:14px;color:var(--muted);max-width:780px;line-height:1.75;margin-bottom:6px">Because of tight sprint timelines and ambiguous requirements, features were built across 3 different component libraries. As a whole, the application did not look cohesive.</p>
+    <p style="font-size:14px;color:var(--muted);max-width:780px;line-height:1.75;margin-bottom:20px">I proposed a redesign of the application to not just "make it work" but also "make it make sense." I built Paradigm + V2 in parallel with the Redesign.</p>
+    <div style="display:flex;gap:12px;width:100%;max-width:980px;align-items:flex-end">
+      <div style="flex:1;overflow:hidden;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.4)">
+        <img src="frame.png" alt="Frame" style="width:100%;height:auto;display:block">
+      </div>
+      <div style="flex:1;overflow:hidden;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.4)">
+        <img src="frame1.png" alt="Frame 1" style="width:100%;height:auto;display:block">
+      </div>
+      <div style="flex:1;overflow:hidden;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.4)">
+        <img src="example.png" alt="Example" style="width:100%;height:auto;display:block">
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 09: REDESIGN V2 ── -->
+  <section class="slide" style="background:var(--bg);gap:14px">
+    <div style="text-align:center">
+      <div class="eyebrow">Paradigm + V2</div>
+      <p style="font-size:clamp(12px,.9vw,14px);max-width:680px;line-height:1.6;color:var(--muted);margin:8px auto 0">Paradigm Design System components were created and pushed into the system on a need-basis.</p>
+    </div>
+    <div style="width:100%;flex:1;min-height:0;border-radius:16px;overflow:hidden;border:1px solid var(--border)">
+      <img src="parad3.png" alt="Redesign V2" style="width:100%;height:100%;object-fit:contain;object-position:center;display:block">
+    </div>
+  </section>
+
+  <!-- ─── 10: AGENT ── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:flex-start;justify-content:flex-start">
+    <div class="eyebrow" style="margin-bottom:8px">Agent</div>
+    <p style="font-size:14px;color:var(--muted);line-height:1.7;margin:0 0 16px 0;max-width:800px">Through feature flagging in Pendo, we identified a significant time-to-action gap on the most critical incidents — a real risk in enterprise IT where delayed response compounds damage. Because the application was highly data-dense, we redefined information hierarchy to reduce cognitive load, surfacing the highest-priority tickets upfront in a <span style="color:var(--accent);font-weight:600">dedicated dashboard</span>. The agentic layer was introduced on top of that to pre-populate recommendations and surface key insights without requiring users to dig through metadata — compressing the path from alert to action.</p>
+    <p style="font-size:14px;color:var(--muted);line-height:1.7;margin:0 0 16px 0;max-width:800px">The core tradeoff was simplicity versus completeness. By curating what the agent surfaces, we made a deliberate decision to optimize for speed and reduced cognitive load.</p>
+    <div style="display:flex;gap:16px;width:100%;flex:1;min-height:0">
+      <div style="flex:1;border-radius:8px;overflow:hidden;min-height:0">
+        <img src="dash.png" alt="Dashboard" style="width:100%;height:100%;object-fit:contain;object-position:top left;display:block">
+      </div>
+      <div style="flex:1;border-radius:8px;overflow:hidden;min-height:0">
+        <img src="component 14.png" alt="Agent" style="width:100%;height:100%;object-fit:contain;object-position:top left;display:block">
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── METRIC ── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:flex-start;justify-content:flex-start">
+    <div class="eyebrow" style="margin-bottom:16px">Qualitative User Testing</div>
+     <div style="display:flex;flex-direction:column;gap:20px;width:100%;align-items:center;justify-content:center;min-height:0">
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px;max-width:700px;width:100%">
+        <div style="font-size:20px;color:var(--accent);line-height:1;flex-shrink:0">&ldquo;</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.7;margin:0;flex:1;font-style:italic">The information I need is all there. I just have to click through three levels to get to it. By the time I&rsquo;ve found what I&rsquo;m looking for, I&rsquo;ve lost the context I started with.</p>
+        <div style="flex-shrink:0;text-align:right">
+          <div style="font-size:11px;color:var(--muted)">Power user, enterprise IT operations</div>
+        </div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px;max-width:700px;width:100%">
+        <div style="font-size:20px;color:var(--accent);line-height:1;flex-shrink:0">&ldquo;</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.7;margin:0;flex:1;font-style:italic">Every ticket type works differently but they all look the same. I have to remember which rules apply to which. That&rsquo;s mental overhead I shouldn&rsquo;t have to carry.</p>
+        <div style="flex-shrink:0;text-align:right">
+          <div style="font-size:11px;color:var(--muted)">IT change analyst, Fortune 10 CPG</div>
+        </div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px;max-width:700px;width:100%">
+        <div style="font-size:20px;color:var(--accent);line-height:1;flex-shrink:0">&ldquo;</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.7;margin:0;flex:1;font-style:italic">As a power user I&rsquo;m managing across everything: incidents, changes, configurations. I need one place where I can see what&rsquo;s moved, what&rsquo;s pending, and what needs my attention. Right now that doesn&rsquo;t exist.</p>
+        <div style="flex-shrink:0;text-align:right">
+          <div style="font-size:11px;color:var(--muted)">Senior power user, ITSM team</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- ─── METRIC 2 ── -->
+    <section class="slide bg-a" style="background:var(--bg);align-items:center;justify-content:center;padding-top:48px;padding-bottom:48px">
+      <div class="eyebrow" style="margin-bottom:16px">Qualitative User Testing</div>
+      <div style="width:100%;max-width:900px;display:flex;flex-direction:row;align-items:center;gap:36px;justify-content:center;flex-wrap:wrap;">
+        <!-- Image on the left -->
+        <div style="flex:0 0 320px;max-width:340px;min-width:220px;display:flex;flex-direction:column;align-items:center;">
+          <img src="list2.png" alt="Side-by-Side List View Example" style="width:100%;max-width:320px;border-radius:10px;box-shadow:0 2px 12px rgba(14,165,181,0.08);border:1px solid var(--border);background:var(--surface);">
+          <div style="font-size:12px;color:var(--muted);margin-top:6px;text-align:center">Example: Side-by-Side List View</div>
+        </div>
+        <!-- Metrics stacked vertically on the right -->
+        <div style="flex:1 1 320px;min-width:260px;max-width:420px;display:flex;flex-direction:column;gap:18px;align-items:stretch;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:15px;font-weight:600;color:var(--accent);margin-bottom:6px">Side-by-Side List View</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Replacing nested ticket navigation with a parallel context view so users could see the Knowledge Graph alongside ticket data without switching screens.</div>
+            <ul class="dk-list" style="margin-top:0">
+              <li><strong>47s</strong> avg nav time (baseline)</li>
+              <li><strong>38%</strong> reduction in time on task</li>
+              <li><strong>52%</strong> drop in mid-flow abandonment</li>
+            </ul>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="font-size:15px;font-weight:600;color:var(--accent);margin-bottom:6px">Module-Based Navigation</div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Grouping ticket types into visually distinct modules to reduce the cognitive load of remembering which rules applied to which ticket type.</div>
+            <ul class="dk-list" style="margin-top:0">
+              <li><strong>29%</strong> baseline error rate</li>
+              <li><strong>41%</strong> error reduction</li>
+              <li>Task completion <strong>61%</strong> to <strong>89%</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── GLASS MORPHISM & SKEWMORPHISM ── -->
+    <section class="slide bg-a" style="background:var(--bg);align-items:center;justify-content:center">
+      <div class="eyebrow" style="margin-bottom:32px">Glass morphism</div>
+      <div style="display:flex;gap:48px;justify-content:center;align-items:flex-end;width:100%;max-width:700px;">
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
+          <img src="glass.png" alt="Glassmorphism Example" style="max-width:220px;width:100%;border-radius:14px;box-shadow:0 2px 16px rgba(14,165,181,0.10);border:1px solid var(--border);background:var(--surface);">
+          <div style="font-size:13px;color:var(--muted);margin-top:8px;text-align:center">Glassmorphism (glass.png)</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
+          <img src="filter.png" alt="Skewmorphism Example" style="max-width:220px;width:100%;border-radius:14px;box-shadow:0 2px 16px rgba(14,165,181,0.10);border:1px solid var(--border);background:var(--surface);">
+          <div style="font-size:13px;color:var(--muted);margin-top:8px;text-align:center">Skewmorphism (filter.png)</div>
+        </div>
+      </div>
+      <div style="margin-top:32px;max-width:420px;text-align:center">
+        <div style="font-size:15px;color:var(--accent);font-weight:600;margin-bottom:6px;">Benefits</div>
+        <div style="font-size:14px;color:var(--text);margin-bottom:18px;">Hierarchy without added UI</div>
+        <div style="font-size:15px;color:var(--accent);font-weight:600;margin-bottom:6px;">Constraint</div>
+        <div style="font-size:14px;color:var(--text);">Background dependency</div>
+      </div>
+    </section>
+
+  <!-- ─── 09: CS1 PROTOTYPE ── -->
+  <section class="slide" style="background:var(--bg);gap:18px">
+    <div style="text-align:center">
+      <div class="eyebrow">Interactive Prototype · Cassini</div>
+
+    </div>
+    <div class="figma-wrap">
+      <!--
+        ┌─────────────────────────────────────────────────┐
+        │  HOW TO ADD YOUR FIGMA PROTOTYPE                │
+        │                                                  │
+        │  1. In Figma, open your prototype               │
+        │  2. Click Share → Copy link                     │
+        │  3. Replace PASTE_YOUR_FIGMA_LINK_HERE below    │
+        │  4. Delete the placeholder <div class="figma-ph"> block │
+        │  5. Uncomment the <iframe> line                 │
+        └─────────────────────────────────────────────────┘
+      -->
+      <iframe
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/XFFZRwIs2uUn4uqR2dhBqg/Work-Sample?page-id=2575%3A88260&node-id=2575-112019&viewport=547%2C301%2C0.02&t=jqwcTen8XI76EGSy-1&scaling=contain&content-scaling=fixed&starting-point-node-id=2575%3A112019"
+        style="width:100%;min-height:600px;border:none;border-radius:16px;"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ─── 07: CS1 OUTCOMES ── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:flex-start">
+    <div class="eyebrow">Cassini · Impact &amp; Scope</div>
+    <div class="out-grid">
+      <div class="out-card">
+        <div class="out-n" style="color:var(--accent)">$200M</div>
+        <div class="out-d">Value realization for Fortune 10 CPG client</div>
+      </div>
+      <div class="out-card">
+        <div class="out-n" style="color:var(--accent)">2 yrs</div>
+        <div class="out-d">0→1 in 2 years, shipped early 2025</div>
+      </div>
+      <div class="out-card">
+        <div class="out-n" style="color:var(--accent)">13</div>
+        <div class="out-d">Engineers collaborating on design-eng pipeline</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CS1 LEARNINGS ── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:center;justify-content:center">
+    <div class="eyebrow" style="margin-bottom:32px">Learnings · Cassini</div>
+    <div style="display:flex;gap:20px;width:100%;max-width:900px">
+
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">01</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">Reactive vs compounded</div>
+      </div>
+
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">02</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">Bringing engineering in early to understand feasibility and constraints</div>
+      </div>
+
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">03</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">Set design system beforehand</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 09: CS2 TITLE ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:flex-start">
+    <div class="eyebrow">Case Study 02 of 02</div>
+    <h2 class="med"><em class="em2">Internal Knowledge Engine</em></h2>
+    <div class="meta-row">
+      <div class="meta-item"><div class="label">Company</div><div class="value">Accrete AI</div></div>
+      <div class="meta-item"><div class="label">Role</div><div class="value">Product Designer</div></div>
+      <div class="meta-item"><div class="label">Scope</div><div class="value">Internal Tool</div></div>
+      <div class="meta-item"><div class="label">Target Users</div><div class="value">Accrete AI Employees</div></div>
+      <div class="meta-item"><div class="label">Team</div><div class="value">15 Engineers · Product Designer</div></div>
+      <div class="meta-item"><div class="label">Duration</div><div class="value">2025 – Present</div></div>
+      <div class="meta-item"><div class="label">My Role</div><div class="value">Feature Ideation / Conceptualization · Engineering-Design Relationship · User Testing + Synthesizing Insight · Design</div></div>
+    </div>
+    <div style="margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07);width:100%;max-width:860px">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);margin-bottom:14px;font-weight:500">Constraints</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 16px;font-size:13px;color:var(--text)">Access control and permissions</div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 16px;font-size:13px;color:var(--text)">Trust in AI-generated answers</div>
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 16px;font-size:13px;color:var(--text)">Different Users, Different Outputs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 10: CS2 PROBLEM ── -->
+  <section class="slide bg-a" style="background:var(--bg)">
+    <div class="two-col" style="align-items:center">
+      <div>
+        <div class="eyebrow">The Problem</div>
+        <h2 class="med" style="font-size:clamp(22px,3vw,42px);max-width:520px">
+          How can organizations enable <em class="em2">smarter and faster</em> decision-making?
+        </h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="background:rgba(14,165,181,.04);border:1px solid rgba(14,165,181,.18);border-radius:16px;padding:28px 32px">
+          <p style="font-size:15px;color:var(--text);line-height:1.8;margin:0">
+            Accrete AI built IKE because they were living the problem. Knowledge was buried in inboxes, scattered across tools, and locked in people's heads — smart people were making slower decisions, not from a lack of information, but because they <em class="em2">couldn't find it fast enough</em>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 11: CS2 DISCOVERY ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:flex-start">
+    <div class="eyebrow">Discovery</div>
+    <div class="two-col" style="align-items:center">
+      <div>
+        <h2 class="med" style="font-size:clamp(22px,3vw,40px)">Starting by <em class="em2">listening</em></h2>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-top:16px;max-width:480px">
+          I interviewed people across Finance, Sales, Marketing, and Engineering — not to validate assumptions, but to understand what a day actually looked like. I shadowed workflows, watched where people got stuck, and asked what they wished they could do.
+        </p>
+      </div>
+      <div>
+        <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+          <div style="padding:14px 20px;border-bottom:1px solid var(--border)">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:500">Internal Research · Findings</div>
+          </div>
+          <div style="padding:24px 20px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;align-items:flex-start;gap:16px">
+              <div style="font-size:clamp(36px,4vw,52px);font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1;flex-shrink:0">89%</div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.6;padding-top:6px">believed faster access to information resulted in more accurate and complete decisions</div>
+            </div>
+            <div style="height:1px;background:var(--border)"></div>
+            <div style="display:flex;align-items:flex-start;gap:16px">
+              <div style="font-size:clamp(36px,4vw,52px);font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1;flex-shrink:0">72%</div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.6;padding-top:6px">wanted the ability to generate reports directly from documents and tickets</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 12: CS2 DISCOVERY QUOTES ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:flex-start;justify-content:center">
+    <div class="eyebrow" style="margin-bottom:20px">Discovery · User Interviews</div>
+    <div style="display:flex;gap:16px;width:100%;max-width:1100px">
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:16px">
+        <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0;flex:1">&ldquo;We have millions of documents sitting across systems and no way to know which ones are actually relevant to a decision we&rsquo;re making right now. By the time someone finds the right information, the window has closed.&rdquo;</p>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:500">Finance Analyst &middot; Preliminary Interview</div>
+      </div>
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:16px">
+        <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0;flex:1">&ldquo;Sales moves fast. But our knowledge doesn&rsquo;t keep up. By the time I find the right case study or competitive intel, the conversation has already moved on.&rdquo;</p>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:500">Sales Team Member &middot; Preliminary Interview</div>
+      </div>
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:16px">
+        <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0;flex:1">&ldquo;We produce so much content but there&rsquo;s no single place to find what&rsquo;s actually been used and what worked. Marketing is constantly recreating things that already exist.&rdquo;</p>
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:500">Marketing Team Member &middot; Preliminary Interview</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 13: CS2 CHALLENGES ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:flex-start;justify-content:center">
+    <div class="eyebrow" style="margin-bottom:20px">Core Design Challenges</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:1100px">
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:500;margin-bottom:12px">01</div>
+        <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0">Employees don't know what they don't know. How do you surface relevant knowledge without requiring the perfect search query?</p>
+      </div>
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:500;margin-bottom:12px">02</div>
+        <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0">Different roles need different knowledge. An engineer and a salesperson asking the same question may need very different answers.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:500;margin-bottom:12px">03</div>
+        <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0">How do you design access controls that don&rsquo;t create friction for legitimate use cases?</p>
+      </div>
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:500;margin-bottom:12px">04</div>
+        <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0">How do you show where an answer came from so users can verify it?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 14: CS2 DESIGN SOLUTIONS ── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:flex-start;justify-content:center">
+    <div class="eyebrow" style="margin-bottom:20px">Design Solutions</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:1100px">
+
+      <!-- ws.png -->
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+        <img src="ws.png" style="width:100%;height:160px;object-fit:cover;object-position:top">
+        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-size:12px;font-weight:600;color:var(--text)">Workspaces</div>
+            <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 02</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0">Dedicated environments per department — each group gets a context tailored to their role and function.</p>
+        </div>
+      </div>
+
+      <!-- source.png -->
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+        <img src="source.png" style="width:100%;height:160px;object-fit:cover;object-position:top">
+        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-size:12px;font-weight:600;color:var(--text)">Sources</div>
+            <div style="display:flex;gap:6px">
+              <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 01</span>
+              <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 04</span>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0">Users upload documents to train the LLM — producing accurate, role-specific output with traceable sourcing.</p>
+        </div>
+      </div>
+
+      <!-- kgp.png -->
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+        <img src="kgp.png" style="width:100%;height:160px;object-fit:cover;object-position:top">
+        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-size:12px;font-weight:600;color:var(--text)">Knowledge Graph</div>
+            <div style="display:flex;gap:6px">
+              <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 01</span>
+              <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 04</span>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0">Visualizes degrees of separation between data, documents, and queries — surfacing connections a simple search would miss.</p>
+        </div>
+      </div>
+
+      <!-- int.png -->
+      <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+        <img src="int.png" style="width:100%;height:160px;object-fit:cover;object-position:top">
+        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-size:12px;font-weight:600;color:var(--text)">Configuration</div>
+            <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 03</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0">Admins connect sources like Jira and Confluence and restrict access per workspace — without blocking legitimate use.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 15: CS2 USER TESTING ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:flex-start;justify-content:center">
+    <div class="eyebrow" style="margin-bottom:20px">User Testing · Insights That Shaped the Prototypes</div>
+    <div style="display:flex;gap:16px;width:100%;max-width:1100px;align-items:stretch">
+
+      <!-- Card 1: Speech to Speech -->
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1">15/16</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">users</div>
+        </div>
+        <div style="height:1px;background:var(--border)"></div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">Agent Selection Anxiety</div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0;flex:1">Didn&rsquo;t want to pick an agent — just wanted to speak and let IKE route it.</p>
+        <div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--border)">
+          <span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:3px 8px">→ Speech to Speech</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Source Citations -->
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1">14/16</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">users</div>
+        </div>
+        <div style="height:1px;background:var(--border)"></div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">Output Trust Gap</div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0;flex:1">Couldn&rsquo;t see where answers came from, so they went back to the original doc anyway.</p>
+        <div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--border)">
+          <span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:3px 8px">→ Source Citations</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Inline Quote Editing -->
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:32px;font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1">11/16</div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">users</div>
+        </div>
+        <div style="height:1px;background:var(--border)"></div>
+        <div style="font-size:13px;font-weight:600;color:var(--text)">No Way to Push Back</div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.7;margin:0;flex:1">Wanted to correct IKE&rsquo;s output, not just read it. When they couldn&rsquo;t, they disengaged.</p>
+        <div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--border)">
+          <span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:3px 8px">→ Inline Quote Editing</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div style="width:180px;flex-shrink:0;display:flex;flex-direction:column;gap:14px">
+        <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+          <div>
+            <div style="font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1">16</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">employees tested</div>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div>
+            <div style="font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1">30+</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">features surfaced</div>
+          </div>
+          <div style="height:1px;background:var(--border)"></div>
+          <div>
+            <div style="font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1">8</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px">departments</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 17: CS2 PROTO — SPEECH TO SPEECH ── -->
+  <section class="slide" style="background:var(--bg);gap:14px">
+    <div style="text-align:center">
+      <div class="eyebrow">Prototype · Speech to Speech</div>
+      <p style="font-size:clamp(12px,.9vw,14px);max-width:680px;line-height:1.6;color:var(--muted);margin:8px auto 0">Talking to IKE</p>
+    </div>
+    <div class="figma-wrap">
+      <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/XFFZRwIs2uUn4uqR2dhBqg/Work-Sample?node-id=2284-202034&scaling=scale-down&content-scaling=fixed&page-id=2284%3A201106&starting-point-node-id=2284%3A202034"
+        style="width:100%;min-height:600px;border:none;border-radius:16px;"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ─── 18: CS2 PROTO — SOURCE CITATIONS ── -->
+  <section class="slide" style="background:var(--bg);gap:14px">
+    <div style="text-align:center">
+      <div class="eyebrow">Prototype · Source Citations</div>
+      <p style="font-size:clamp(12px,.9vw,14px);max-width:680px;line-height:1.6;color:var(--muted);margin:8px auto 0">Verifying where answers come from</p>
+    </div>
+    <div class="figma-wrap">
+      <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/XFFZRwIs2uUn4uqR2dhBqg/Work-Sample?node-id=2284-225961&scaling=scale-down&content-scaling=fixed&page-id=2284%3A201106&starting-point-node-id=2284%3A225961"
+        style="width:100%;min-height:600px;border:none;border-radius:16px;"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ─── 19: CS2 PROTO — INLINE QUOTE EDITING ── -->
+  <section class="slide" style="background:var(--bg);gap:14px">
+    <div style="text-align:center">
+      <div class="eyebrow">Prototype · Inline Quote Editing</div>
+      <p style="font-size:clamp(12px,.9vw,14px);max-width:680px;line-height:1.6;color:var(--muted);margin:8px auto 0">Correcting output</p>
+    </div>
+    <div class="figma-wrap">
+      <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/XFFZRwIs2uUn4uqR2dhBqg/Work-Sample?node-id=2284-229799&scaling=scale-down&content-scaling=fixed&page-id=2284%3A201106&starting-point-node-id=2284%3A229799"
+        style="width:100%;min-height:600px;border:none;border-radius:16px;"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ─── 14: CS2 PROTOTYPE ── -->
+  <section class="slide" style="background:var(--bg);gap:14px">
+    <div style="text-align:center">
+      <div class="eyebrow">Interactive Prototype · Internal Knowledge Engine</div>
+
+    </div>
+    <div class="figma-wrap">
+      <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/XFFZRwIs2uUn4uqR2dhBqg/Work-Sample?node-id=2254-140488&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2254%3A140488&page-id=2254%3A139157"
+        style="width:100%;min-height:600px;border:none;border-radius:16px;"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ─── 22: CS2 OUTCOMES ── -->
+  <section class="slide bg-b" style="background:var(--bg);align-items:flex-start">
+    <div class="eyebrow">Outcomes</div>
+    <div class="out-grid">
+      <div class="out-card">
+        <div class="out-n" style="color:var(--accent)">33</div>
+        <div class="out-d">New employees used IKE for onboarding</div>
+      </div>
+      <div class="out-card">
+        <div class="out-n" style="color:var(--accent)">30+</div>
+        <div class="out-d">Product features shipped from research cycles</div>
+      </div>
+      <div class="out-card">
+        <div class="out-n" style="color:var(--accent)">40%</div>
+        <div class="out-d">Estimated increase in efficiency</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 23: CS2 LEARNINGS ── -->
+  <section class="slide bg-a" style="background:var(--bg);align-items:center;justify-content:center">
+    <div class="eyebrow" style="margin-bottom:32px">Learnings</div>
+    <div style="display:flex;gap:20px;width:100%;max-width:900px">
+
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">01</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">Trust is a design problem</div>
+      </div>
+
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">02</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">Testing with internal users is different</div>
+      </div>
+
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">03</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">Agency matters as much as accuracy</div>
+      </div>
+
+      <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">04</div>
+        <div style="font-size:14px;font-weight:600;color:var(--text)">Ship fast, learn faster</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 15: END ── -->
+  <section class="slide bg-cover" style="background:var(--bg);text-align:center">
+    <div class="bub" style="width:280px;height:280px;top:-80px;right:-60px"></div>
+    <div class="bub" style="width:180px;height:180px;bottom:80px;left:-40px"></div>
+    <h1 class="big" style="font-size:clamp(44px,6vw,78px)">Let's build<br><em>cool stuff!</em></h1>
+    <div class="cover-line" style="margin:22px auto"></div>
+    <p class="subtitle">Meghan Kulkarni · Product Designer</p>
+    <div class="contact-links">
+      <a href="mailto:meghan@example.com" class="cl cl-p">Say hello →</a>
+      <a href="https://meghanportfolio.com" class="cl cl-o">Full portfolio</a>
+    </div>
+  </section>
+
+</div><!-- /deck -->
+
+<!-- ══════════════════════════════════════════ -->
+<!--  NAV BAR                                   -->
+<!-- ══════════════════════════════════════════ -->
+<div id="nav">
+  <button class="nbtn" id="prev" aria-label="Previous slide">←</button>
+  <div id="prog-wrap">
+    <div class="prog-track"><div class="prog-fill" id="bar"></div></div>
+    <div id="dots-row"></div>
+  </div>
+  <span id="ctr">01 / 16</span>
+  <button class="nbtn" id="next" aria-label="Next slide">→</button>
+</div>
+
+<script>
+const slides  = document.querySelectorAll('.slide');
+const deck    = document.getElementById('deck');
+const bar     = document.getElementById('bar');
+const dotsRow = document.getElementById('dots-row');
+const ctr     = document.getElementById('ctr');
+const prev    = document.getElementById('prev');
+const next    = document.getElementById('next');
+const hint    = document.getElementById('hint');
+const total   = slides.length;
+let cur = 0;
+let hintTimer;
+
+// Build nav dots
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot';
+  d.setAttribute('aria-label', `Slide ${i + 1}`);
+  d.addEventListener('click', () => goTo(i));
+  dotsRow.appendChild(d);
+});
+
+function goTo(n) {
+  n = Math.max(0, Math.min(total - 1, n));
+  cur = n;
+  deck.style.transform = `translateX(-${cur * 100}vw)`;
+  bar.style.width = `${((cur + 1) / total) * 100}%`;
+  ctr.textContent = `${String(cur + 1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;
+  dotsRow.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active',  i === cur);
+    d.classList.toggle('visited', i < cur);
+  });
+  prev.disabled = cur === 0;
+  next.disabled = cur === total - 1;
+  updateSidebar();
+}
+
+prev.addEventListener('click', () => goTo(cur - 1));
+next.addEventListener('click', () => goTo(cur + 1));
+
+// Sidebar
+const menuToggle  = document.getElementById('menu-toggle');
+const sidebar     = document.getElementById('sidebar');
+const overlay     = document.getElementById('sidebar-overlay');
+const sbItems     = document.querySelectorAll('.sb-item');
+
+function openMenu()  { sidebar.classList.add('open'); overlay.classList.add('open'); menuToggle.classList.add('open'); }
+function closeMenu() { sidebar.classList.remove('open'); overlay.classList.remove('open'); menuToggle.classList.remove('open'); }
+function toggleMenu() { sidebar.classList.contains('open') ? closeMenu() : openMenu(); }
+
+menuToggle.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', closeMenu);
+
+sbItems.forEach(btn => {
+  btn.addEventListener('click', () => {
+    goTo(parseInt(btn.dataset.slide));
+    closeMenu();
+  });
+});
+
+function updateSidebar() {
+  sbItems.forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.slide) === cur));
+}
+
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(cur + 1); }
+  if (e.key === 'ArrowLeft')                   { e.preventDefault(); goTo(cur - 1); }
+  if (e.key === 'Home')                        { e.preventDefault(); goTo(0); }
+  if (e.key === 'End')                         { e.preventDefault(); goTo(total - 1); }
+  if (e.key === 'f' || e.key === 'F')          document.documentElement.requestFullscreen?.();
+});
+
+// Touch swipe
+let tx = 0;
+deck.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+deck.addEventListener('touchend',   e => {
+  const dx = tx - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 44) goTo(cur + (dx > 0 ? 1 : -1));
+}, { passive: true });
+
+// Fade hint after 4s
+hintTimer = setTimeout(() => { hint.style.opacity = '0'; }, 4000);
+document.addEventListener('keydown', () => {
+  hint.style.opacity = '0';
+  clearTimeout(hintTimer);
+}, { once: true });
+
+goTo(0);
+
+// ── COST TICKER ──
+// $33,000/min = $550/sec. Ticks every 100ms (+$55).
+let tickerInterval = null;
+let tickerSeconds  = 0;
+const PROBLEM_SLIDE = 2; // 0-indexed
+
+function startTicker() {
+  if (tickerInterval) return;
+  tickerSeconds = 0;
+  const costEl    = document.getElementById('cost-ticker');
+  const elapsedEl = document.getElementById('elapsed-ticker');
+  if (!costEl) return;
+  costEl.textContent = '$0';
+  elapsedEl.textContent = '00:00';
+  const ticketEl = document.getElementById('ticket-count');
+  if (ticketEl) ticketEl.textContent = '0';
+  tickerInterval = setInterval(() => {
+    tickerSeconds += 0.1;
+    const cost = Math.round(tickerSeconds * 550);
+    costEl.textContent = '$' + cost.toLocaleString();
+    const mins = Math.floor(tickerSeconds / 60);
+    const secs = Math.floor(tickerSeconds % 60);
+    elapsedEl.textContent = String(mins).padStart(2,'0') + ':' + String(secs).padStart(2,'0');
+    // ~1 new ticket every 8 seconds
+    if (ticketEl) ticketEl.textContent = Math.floor(tickerSeconds / 8) + 1;
+  }, 100);
+}
+
+function stopTicker() {
+  clearInterval(tickerInterval);
+  tickerInterval = null;
+}
+
+// Wrap goTo to start/stop ticker on the problem slide
+const _origGoTo = goTo;
+goTo = function(n) {
+  _origGoTo(n);
+  if (n === PROBLEM_SLIDE) startTicker();
+  else stopTicker();
+};
+</script>
+</body>
+</html>
