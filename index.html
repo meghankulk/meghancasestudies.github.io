@@ -601,10 +601,10 @@ ul.dk-list li strong { color: var(--text); }
       <div style="background:rgba(14,165,181,.04);border:1px solid rgba(14,165,181,.15);border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
         <div style="padding:10px 14px;border-bottom:1px solid rgba(14,165,181,.1)">
           <div style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)">AG Grid</div>
-          <p style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:6px">With seven ticket types sharing a single list view, users lost context constantly. Rather than designing a bespoke table from scratch before the data model was stable, AG Grid let us prototype column configurations, filtering, and grouping in days — fast enough to test whether type-level separation actually helped users orient, before committing to a full implementation.</p>
+          <p style="font-size:12px;color:var(--muted);line-height:1.55;margin-top:6px">AG Grid let us quickly prototype and test table layouts before building a custom solution.</p>
         </div>
-        <div style="flex:1;min-height:60px;overflow:hidden">
-          <img src="AG.png" alt="AG Grid" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="flex:1;min-height:60px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--surface)">
+          <img src="AG.png" alt="AG Grid" style="max-width:100%;max-height:320px;width:auto;height:auto;object-fit:contain;display:block;margin:auto">
         </div>
       </div>
     </div>
@@ -794,7 +794,6 @@ ul.dk-list li strong { color: var(--text); }
             <div style="font-size:15px;font-weight:600;color:var(--accent);margin-bottom:6px">Module-Based Navigation</div>
             <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Grouping ticket types into visually distinct modules to reduce the cognitive load of remembering which rules applied to which ticket type.</div>
             <ul class="dk-list" style="margin-top:0">
-              <li><strong>29%</strong> baseline error rate</li>
               <li><strong>41%</strong> error reduction</li>
               <li>Task completion <strong>61%</strong> to <strong>89%</strong></li>
             </ul>
@@ -985,7 +984,7 @@ ul.dk-list li strong { color: var(--text); }
   <!-- ─── 13: CS2 CHALLENGES ── -->
   <section class="slide bg-b" style="background:var(--bg);align-items:flex-start;justify-content:center">
     <div class="eyebrow" style="margin-bottom:20px">Core Design Challenges</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:1100px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;width:100%;max-width:1200px">
       <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px">
         <div style="font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:500;margin-bottom:12px">01</div>
         <p style="font-size:14px;color:var(--text);line-height:1.8;margin:0">Employees don't know what they don't know. How do you surface relevant knowledge without requiring the perfect search query?</p>
@@ -1013,7 +1012,7 @@ ul.dk-list li strong { color: var(--text); }
       <!-- ws.png -->
       <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
         <img src="ws.png" style="width:100%;height:auto;object-fit:contain;object-position:center;display:block">
-        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+        <div style="padding:12px 10px 14px;display:flex;flex-direction:column;gap:8px;flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div style="font-size:12px;font-weight:600;color:var(--text)">Workspaces</div>
             <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 02</span>
@@ -1025,7 +1024,7 @@ ul.dk-list li strong { color: var(--text); }
       <!-- source.png -->
       <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
         <img src="source.png" style="width:100%;height:auto;object-fit:contain;object-position:center;display:block">
-        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+        <div style="padding:12px 10px 14px;display:flex;flex-direction:column;gap:8px;flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div style="font-size:12px;font-weight:600;color:var(--text)">Sources</div>
             <div style="display:flex;gap:6px">
@@ -1040,7 +1039,7 @@ ul.dk-list li strong { color: var(--text); }
       <!-- kgp.png -->
       <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
         <img src="kgp.png" style="width:100%;height:auto;object-fit:contain;object-position:center;display:block">
-        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+        <div style="padding:12px 10px 14px;display:flex;flex-direction:column;gap:8px;flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div style="font-size:12px;font-weight:600;color:var(--text)">Knowledge Graph</div>
             <div style="display:flex;gap:6px">
@@ -1054,8 +1053,8 @@ ul.dk-list li strong { color: var(--text); }
 
       <!-- int.png -->
       <div style="background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-        <img src="int.png" style="width:100%;height:160px;object-fit:cover;object-position:top">
-        <div style="padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1">
+        <img src="int.png" style="width:100%;height:auto;object-fit:contain;object-position:center;display:block">
+        <div style="padding:12px 10px 14px;display:flex;flex-direction:column;gap:8px;flex:1">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div style="font-size:12px;font-weight:600;color:var(--text)">Configuration</div>
             <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(14,165,181,.1);border:1px solid rgba(14,165,181,.25);border-radius:4px;padding:2px 7px">Challenge 03</span>
@@ -1235,7 +1234,6 @@ ul.dk-list li strong { color: var(--text); }
 
       <div style="flex:1;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
         <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600">04</div>
-        <div style="font-size:14px;font-weight:600;color:var(--text)">Ship fast, learn faster</div>
       </div>
 
     </div>
