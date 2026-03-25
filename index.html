@@ -360,7 +360,7 @@ ul.dk-list li strong { color: var(--text); }
       <!-- Paradigm Design System covers slides 9 and 10 -->
       <button class="sb-item" data-slide="9"><span class="sb-num">09</span>Paradigm + V2</button>
       <!-- Paradigm + V2 covers slides 10 and 11 -->
-      <button class="sb-item" data-slide="10"><span class="sb-num">11</span>Dashboard</button>
+      <button class="sb-item" data-slide="10"><span class="sb-num">11</span>Dashboard vs. Gantt Chart</button>
       <button class="sb-item" data-slide="11"><span class="sb-num">12</span>Qualitative User Testing</button>
       <button class="sb-item" data-slide="12"><span class="sb-num">13</span>A/B Testing</button>
       <button class="sb-item" data-slide="13"><span class="sb-num">14</span>Glass Morphism</button>
@@ -722,11 +722,12 @@ ul.dk-list li strong { color: var(--text); }
     </div>
   </section>
 
-  <!-- ─── 10: DASHBOARD ── -->
+  <!-- ─── 10: DASHBOARD VS. GANTT CHART ── -->
   <section class="slide bg-a" style="background:var(--bg);align-items:flex-start;justify-content:flex-start">
-    <div class="eyebrow" style="margin-bottom:8px">Dashboard</div>
-    <p style="font-size:14px;color:var(--muted);line-height:1.7;margin:0 0 16px 0;max-width:800px">Through feature flagging in Pendo, we identified a significant time-to-action gap on the most critical incidents — a real risk in enterprise IT where delayed response compounds damage. Because the application was highly data-dense, we redefined information hierarchy to reduce cognitive load, surfacing the highest-priority tickets upfront in a <span style="color:var(--accent);font-weight:600">dedicated dashboard</span>. The dashboard layer was introduced on top of that to pre-populate recommendations and surface key insights without requiring users to dig through metadata — compressing the path from alert to action.</p>
-    <p style="font-size:14px;color:var(--muted);line-height:1.7;margin:0 0 16px 0;max-width:800px">The core tradeoff was simplicity versus completeness. By curating what the dashboard surfaces, we made a deliberate decision to optimize for speed and reduced cognitive load.</p>
+    <div class="eyebrow" style="margin-bottom:8px">Dashboard vs. Gantt Chart</div>
+    <p style="font-size:14px;color:var(--muted);line-height:1.7;margin:0 0 16px 0;max-width:800px">
+      The client wanted a fully interactive <span style="color:var(--accent);font-weight:600">Gantt Chart</span> surfacing every overlap, but engineering flagged it as too complex. Conversations with IT revealed users only needed to see the timeline, not manipulate it—read-only visibility was enough. The <span style="color:var(--accent);font-weight:600">Dashboard</span> we designed solved for this by pinpointing and surfacing only the most critical incidents upfront, using color to highlight overlaps and severity. This approach prioritized speed and clarity, reducing cognitive load by curating only the most actionable information and compressing the path from alert to action.
+    </p>
     <div style="display:flex;gap:16px;width:100%;flex:1;min-height:0">
       <div style="flex:1;border-radius:8px;overflow:hidden;min-height:0">
         <img src="gant.png" alt="Dashboard Gantt Chart" style="width:100%;height:100%;object-fit:contain;object-position:top left;display:block">
